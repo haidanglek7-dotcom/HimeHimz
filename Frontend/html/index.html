@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hime — a professional, cute and cozy VTuber portfolio."
+    />
+    <title>Hime VTuber — Moonlit streams & cozy chaos</title>
+    <link rel="stylesheet" href="../css/introScreen.css" />
+    <link rel="stylesheet" href="../css/star.css">
+    <link rel="stylesheet" href="../css/introSunrise.css">
+    <style>
+      :root {
+        --ink: #f8f6ff;
+        --muted: #bdb9d6;
+        --bg-deep: #060816;
+        --accent: #7f70e8;
+        --primary: #ff9bb5;
+        --text-muted: #bdb9d6;
+        --font-mono: "SFMono-Regular", ui-monospace, monospace;
+        --subtle: #8580a8;
+        --night: #090a1c;
+        --night-soft: #11112b;
+        --panel: rgba(22, 21, 53, 0.58);
+        --panel-solid: #171638;
+        --line: rgba(215, 207, 255, 0.16);
+        --pink: #ff9bb5;
+        --pink-bright: #ffbed0;
+        --lilac: #b7a5ff;
+        --violet: #7f70e8;
+        --gold: #ffd880;
+        --silver: #cfd5ef;
+        --bronze: #e9a873;
+        --mint: #79e8bd;
+        --red: #ff8596;
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+        --radius-lg: 28px;
+        --radius-md: 20px;
+        --page: min(1180px, calc(100% - 48px));
+        --bg-a: rgba(148, 109, 255, 0.2);
+        --bg-b: rgba(255, 115, 159, 0.12);
+        --bg-1: #0b0b20;
+        --bg-2: #0a0a1c;
+        --bg-3: #100d27;
+        --surface: rgba(255,255,255,.045);
+        --surface-strong: rgba(255,255,255,.08);
+        --pill-bg: rgba(255,255,255,.06);
+        --pill-text: #f7f5ff;
+        --pill-border: rgba(215, 207, 255, 0.16);
+        --chip-bg: rgba(255,255,255,.045);
+        --chip-text: #e4e0f3;
+        --hero-text: #d6d3e6;
+        color-scheme: dark;
+        scroll-behavior: smooth;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 86% 9%, var(--bg-a), transparent 24rem),
+          radial-gradient(circle at 12% 55%, var(--bg-b), transparent 25rem),
+          linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 42%, var(--bg-3) 100%);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+        transition: background 0.65s ease, color 0.65s ease;
+      }
+      body.light-mode {
+        --ink: #3f2742;
+        --muted: #7d5c7a;
+        --subtle: #9b7f96;
+        --night: #fff9fc;
+        --night-soft: #fff0f6;
+        --panel: rgba(255, 255, 255, 0.76);
+        --panel-solid: #fff9fc;
+        --line: rgba(255, 133, 179, 0.22);
+        --pink: #ff62a4;
+        --pink-bright: #ff84b0;
+        --lilac: #c497ff;
+        --violet: #8d6af1;
+        --gold: #ffbf60;
+        --silver: #f4ebff;
+        --bronze: #e89c72;
+        --mint: #4ecb8f;
+        --red: #ff6b8d;
+        --shadow: 0 24px 60px rgba(220, 148, 180, 0.2);
+        --bg-a: rgba(255, 168, 198, 0.4);
+        --bg-b: rgba(255, 216, 231, 0.92);
+        --bg-1: #fffafc;
+        --bg-2: #fff2f7;
+        --bg-3: #ffe8f1;
+        --surface: rgba(255,255,255,.74);
+        --surface-strong: rgba(255,255,255,.9);
+        --pill-bg: rgba(255,255,255,.88);
+        --pill-text: #7d3b5e;
+        --pill-border: rgba(255, 133, 179, 0.28);
+        --chip-bg: rgba(255,255,255,.84);
+        --chip-text: #7d3b5e;
+        --hero-text: #7d5c7a;
+        color-scheme: light;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        z-index: -1;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.16;
+        background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, #000, transparent 78%);
+      }
+      ::selection { background: rgba(255, 155, 181, .32); color: #fff; }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea, select { font: inherit; }
+      button { cursor: pointer; }
+      img, svg { display: block; max-width: 100%; }
+      :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+      .skip-link {
+        position: fixed;
+        z-index: 100;
+        top: 12px;
+        left: 12px;
+        transform: translateY(-170%);
+        padding: .75rem 1rem;
+        border-radius: 12px;
+        background: var(--gold);
+        color: #171023;
+        font-weight: 800;
+        transition: transform .2s ease;
+      }
+      .skip-link:focus { transform: translateY(0); }
+
+      .site-header {
+        position: fixed;
+        z-index: 50;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 18px 0;
+        background: transparent;
+        border-bottom: 0;
+        transition: padding .25s ease, background .25s ease, border-color .25s ease;
+      }
+      .site-header.is-scrolled {
+        padding: 10px 0;
+        background: transparent;
+        border-bottom: 0;
+        backdrop-filter: none;
+      }
+      .nav-shell {
+        width: var(--page);
+        min-height: 58px;
+        margin: 0 auto;
+        padding: 8px 12px 8px 18px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border: 0;
+        border-radius: 18px;
+        background: transparent;
+        box-shadow: none;
+        transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+      }
+      .site-header.is-scrolled .nav-shell {
+        border-color: transparent;
+        background: transparent;
+        box-shadow: none;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        flex: 0 0 auto;
+        font-weight: 850;
+        letter-spacing: .02em;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 4px;
+        flex: 1 1 auto;
+      }
+      .nav-link {
+        position: relative;
+        padding: .55rem .75rem;
+        border-radius: 999px;
+        color: #d7d3ea;
+        font-size: .9rem;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: color .2s ease, background .2s ease;
+      }
+      .nav-link:hover, .nav-link:focus-visible, .nav-link.is-active {
+        color: #fff;
+        background: rgba(185, 166, 255, .16);
+      }
+      .nav-link.is-active::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        bottom: 4px;
+        left: 18px;
+        height: 2px;
+        border-radius: 99px;
+        background: linear-gradient(90deg, var(--pink), var(--lilac));
+      }
+      .theme-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        padding: .38rem .55rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--ink);
+        background: rgba(255,255,255,.06);
+        font-size: .8rem;
+        font-weight: 700;
+      }
+      .theme-switch .track {
+        position: relative;
+        width: 48px;
+        height: 26px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #121234, #ff8fb6);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+      }
+      .theme-switch .thumb {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform .25s ease;
+      }
+      body.light-mode .theme-switch .thumb { transform: translateX(22px); }
+      .menu-button {
+        display: none;
+        width: 42px;
+        height: 42px;
+        margin-left: 8px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        color: var(--ink);
+        background: rgba(255,255,255,.04);
+      }
+      .menu-button svg { margin: auto; }
+
+      main { overflow: clip; }
+      section { scroll-margin-top: 95px; }
+      .section {
+        width: var(--page);
+        margin: 0 auto;
+        padding: 112px 0;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 14px;
+        color: var(--pink-bright);
+        font-size: .76rem;
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        content: "✦";
+        color: var(--gold);
+        font-size: .95rem;
+      }
+      .section-title {
+        max-width: 750px;
+        margin: 0;
+        font-size: clamp(2rem, 4.4vw, 4.2rem);
+        line-height: .98;
+        letter-spacing: -.065em;
+      }
+      .section-lede {
+        max-width: 620px;
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.7vw, 1.13rem);
+      }
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+      body.light-mode .nav-link {
+        color: #7d3b5e;
+      }
+      body.light-mode .nav-link:hover,
+      body.light-mode .nav-link:focus-visible,
+      body.light-mode .nav-link.is-active {
+        color: #ff5f95;
+        background: rgba(255, 133, 179, .14);
+      }
+      body.light-mode .button.secondary {
+        color: var(--ink);
+        background: rgba(255,255,255,.74);
+        border-color: var(--line);
+      }
+      body.light-mode .button.secondary:hover {
+        background: rgba(255,255,255,.92);
+      }
+      body.light-mode .hero-chip,
+      body.light-mode .social-link,
+      body.light-mode .directory-link,
+      body.light-mode .table-button,
+      body.light-mode .search-field input {
+        background: var(--surface);
+        color: var(--ink);
+        border-color: var(--line);
+      }
+      body.light-mode .social-link:hover,
+      body.light-mode .directory-link:hover,
+      body.light-mode .table-button:hover {
+        background: var(--surface-strong);
+      }
+      body.light-mode .art-note {
+        background: rgba(255,255,255,.76);
+        color: var(--ink);
+        border-color: var(--pill-border);
+      }
+      body.light-mode .trait,
+      body.light-mode .game-card,
+      body.light-mode .field input,
+      body.light-mode .field select,
+      body.light-mode .field textarea {
+        background: var(--surface);
+        color: var(--ink);
+        border-color: var(--line);
+      }
+      body.light-mode .field input::placeholder,
+      body.light-mode .field textarea::placeholder {
+        color: var(--subtle);
+      }
+      body.light-mode .field input:focus,
+      body.light-mode .field select:focus,
+      body.light-mode .field textarea:focus {
+        background: rgba(255,255,255,.9);
+        box-shadow: 0 0 0 4px rgba(255, 133, 179, .14);
+      }
+      body.light-mode .table th {
+        background: rgba(255,255,255,.5);
+      }
+      body.light-mode .schedule-card::before {
+        background: radial-gradient(circle, rgba(255, 191, 96, .28), transparent 67%);
+      }
+      body.light-mode .contact-shell {
+        background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,244,248,.92));
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        width: var(--page);
+        min-height: max(720px, 100svh);
+        margin: 0 auto;
+        padding: 124px 0 56px;
+        display: grid;
+        grid-template-columns: minmax(0, .88fr) minmax(360px, 1.12fr);
+        align-items: center;
+        gap: clamp(15px, 3vw, 60px);
+      }
+      .hero-copy { position: relative; z-index: 2; align-self: start; padding-top: clamp(8px, 4vh, 36px); }
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 18px;
+        color: var(--pink-bright);
+        font-weight: 800;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+        font-size: .78rem;
+      }
+      .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 0 5px rgba(121, 232, 189, .1), 0 0 18px var(--mint);
+      }
+      .hero h1 {
+        max-width: 620px;
+        margin: 0;
+        font-size: clamp(4rem, 8.5vw, 8rem);
+        line-height: .81;
+        letter-spacing: -.095em;
+        text-wrap: balance;
+      }
+      .hero h1 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(245, 240, 255, .75);
+        background: linear-gradient(90deg, #fff 0%, #f3d4ff 38%, #b3a5ff 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+      .hero-text {
+        max-width: 520px;
+        margin: 28px 0 0;
+        color: var(--hero-text);
+        font-size: clamp(1rem, 1.6vw, 1.13rem);
+      }
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin: 24px 0 0;
+      }
+      .hero-chip {
+        padding: .45rem .72rem;
+        border: 1px solid var(--pill-border);
+        border-radius: 999px;
+        color: var(--chip-text);
+        background: var(--chip-bg);
+        font-size: .8rem;
+        font-weight: 650;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 31px 0 0;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 49px;
+        padding: .75rem 1rem;
+        border: 1px solid transparent;
+        border-radius: 15px;
+        color: #171128;
+        background: linear-gradient(135deg, var(--pink-bright), #c4b9ff);
+        box-shadow: 0 12px 24px rgba(170, 133, 241, .18);
+        font-weight: 850;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .button:hover { transform: translateY(-3px); box-shadow: 0 17px 28px rgba(170, 133, 241, .28); }
+      .button.secondary {
+        border-color: var(--line);
+        color: #eeeaff;
+        background: rgba(17, 15, 44, .64);
+        box-shadow: none;
+      }
+      .button.secondary:hover {
+        border-color: rgba(255, 190, 208, .5);
+        background: rgba(17, 15, 44, .64);
+      }
+      .social-rail {
+        position: absolute;
+        z-index: 3;
+        bottom: 50px;
+        left: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .social-label { margin: 0 5px -100px 0; color: var(--subtle); font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      .social-link {
+        position: relative;
+        display: grid;
+        margin: 0 0 -100px 0;
+        width: 43px;
+        height: 43px;
+        place-items: center;
+        border: 1px solid #ff9bb5;
+        border-radius: 50%;
+        color: var(--pill-text);
+        background: #fff;
+        transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+      }
+      .social-link:hover, .social-link:focus-visible {
+        transform: translateY(-4px);
+        border-color: rgba(255, 190, 208, .76);
+        background: rgba(255, 155, 181, .14);
+        box-shadow: 0 9px 20px rgba(255, 143, 181, .16);
+      }
+      .social-link::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: -33px;
+        left: 50%;
+        padding: .28rem .45rem;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        color: #fff;
+        background: #161532;
+        font-size: .66rem;
+        font-weight: 700;
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -3px);
+        transition: opacity .15s ease, transform .15s ease;
+      }
+      .social-link:hover::after, .social-link:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+      .social-link svg { width: 19px; height: 19px; fill: black; }
+      .hero-art-wrap { position: relative; z-index: 1; min-height: 580px; }
+      .hero-glow {
+        position: absolute;
+        inset: 9% 5% 2%;
+        border-radius: 47% 53% 45% 55% / 50% 43% 57% 50%;
+        background: radial-gradient(circle at 52% 42%, rgba(255, 207, 229, .53), rgba(169, 121, 254, .22) 32%, rgba(113, 71, 200, .08) 55%, transparent 69%);
+        filter: blur(2px);
+      }
+      .avatar-card {
+        position: absolute;
+        top: 50%;
+        right: 2%;
+        width: min(100%, 615px);
+        transform: translateY(-50%);
+        animation: hover-float 7s ease-in-out infinite;
+      }
+      .avatar-card img,
+      .avatar-card svg {
+        overflow: visible;
+        width: min(100%, 460px);
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border: 3px solid #fff;
+        border-radius: 24px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+        filter: drop-shadow(0 27px 28px rgba(3, 3, 17, .38));
+      }
+      .art-note {
+        position: absolute;
+        right: 0;
+        bottom: 7%;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: .7rem .8rem;
+        border: 1px solid rgba(225,220,255,.23);
+        border-radius: 15px;
+        background: rgba(17, 15, 44, .64);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+        color: #e7e4f7;
+        font-size: .8rem;
+        font-weight: 700;
+      }
+      .art-note .star { color: var(--gold); font-size: 1.2rem; }
+      .star-field { position: absolute; inset: 0; pointer-events: none; }
+      .star-field i { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #fff; box-shadow: 0 0 11px 2px rgba(255,255,255,.35); animation: twinkle 3s ease-in-out infinite; }
+      .star-field i:nth-child(1) { top: 14%; left: 17%; }
+      .star-field i:nth-child(2) { top: 28%; right: 7%; animation-delay: .8s; }
+      .star-field i:nth-child(3) { top: 61%; left: 5%; animation-delay: 1.4s; }
+      .star-field i:nth-child(4) { top: 78%; right: 18%; animation-delay: 2.1s; }
+      .star-field i:nth-child(5) { top: 6%; left: 56%; animation-delay: .35s; }
+
+      /* About */
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(330px, .96fr);
+        gap: 28px;
+        margin-top: 47px;
+      }
+      .profile-story { padding: 30px; }
+      .story-quote {
+        max-width: 45ch;
+        margin: 0 0 29px;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+        line-height: 1.35;
+        transition: color .35s ease;
+      }
+      .trait-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .trait {
+        min-height: 132px;
+        padding: 18px;
+        border: 1px solid rgba(220,214,255,.1);
+        border-radius: 18px;
+        background: rgba(255,255,255,.035);
+        transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      }
+      .trait:hover { transform: translateY(-3px); border-color: rgba(255,190,208,.38); background: rgba(255,255,255,.065); }
+      .trait-icon { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 11px; background: rgba(255, 155, 181, .13); color: var(--pink-bright); font-size: 1.05rem; }
+      .trait h3 { margin: 13px 0 5px; font-size: .93rem; }
+      .trait p { margin: 0; color: var(--muted); font-size: .79rem; line-height: 1.55; }
+      .schedule-card { padding: 28px; position: relative; overflow: hidden; }
+      .schedule-card::before { content:""; position:absolute; width:230px; height:230px; right:-105px; top:-97px; border-radius:50%; background: radial-gradient(circle, rgba(255,220,128,.22), transparent 67%); }
+      .card-head { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 20px; }
+      .card-head h3 { margin: 0; font-size: 1.25rem; }
+      .timezone { padding: .32rem .5rem; border: 1px solid rgba(255,216,128,.3); border-radius: 99px; color: var(--gold); background: rgba(255,216,128,.07); font-size: .68rem; font-weight: 800; white-space: nowrap; }
+      .schedule-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .schedule-list { position: relative; list-style: none; margin: 0; padding: 0; }
+      .schedule-list li { display: grid; grid-template-columns: 82px 64px minmax(0, 1fr); gap: 10px; align-items: center; padding: 13px 0; border-top: 1px solid rgba(220,214,255,.1); font-size: .85rem; }
+      .schedule-list.editing li { grid-template-columns: minmax(100px, 1fr) minmax(140px, 1fr) minmax(0, 1.8fr) 40px; }
+      .schedule-list li:first-child { border-top: 0; }
+      .schedule-day {
+        color: var(--ink);
+        font-weight: 800;
+        transition: color .35s ease;
+      }
+      .schedule-time { color: var(--pink-bright); font-weight: 750; font-variant-numeric: tabular-nums; }
+      .schedule-show { overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
+      .schedule-editor { margin-top: 16px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.04); }
+      .schedule-editor-title { margin: 0 0 10px; color: var(--pink-bright); font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      .schedule-edit-grid { display: grid; gap: 10px; }
+      .schedule-edit-row { display: grid; gap: 8px; padding: 10px; border: 1px solid rgba(220,214,255,.1); border-radius: 12px; background: rgba(255,255,255,.03); }
+      .schedule-edit-field { display: grid; gap: 6px; }
+      .schedule-edit-field span { color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+      .schedule-edit-field input,
+      .schedule-edit-field select { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: .6rem .7rem; color: var(--ink); outline: none; background: rgba(8, 8, 27, .46); font-size: .8rem; }
+      .schedule-edit-field input:focus,
+      .schedule-edit-field select:focus { border-color: var(--lilac); background: rgba(8, 8, 27, .65); box-shadow: 0 0 0 4px rgba(183,165,255,.11); }
+      .schedule-remove { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: rgba(255,255,255,.05); font-size: 1.1rem; font-weight: 800; transition: background .2s ease, transform .2s ease, border-color .2s ease; }
+      .schedule-remove:hover,
+      .schedule-remove:focus-visible { background: rgba(255,255,255,.1); transform: translateY(-1px); border-color: rgba(255,190,208,.55); }
+      .schedule-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+      .schedule-status { margin: 10px 0 0; color: var(--mint); font-size: .75rem; font-weight: 700; }
+      .game-deck { margin-top: 28px; }
+      .game-deck h3 { margin: 0 0 16px; font-size: 1rem; }
+      .games { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .game-card {
+        position: relative;
+        min-height: 180px;
+        overflow: hidden;
+        padding: 17px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: linear-gradient(150deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+        transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      }
+      .game-card:hover { transform: translateY(-5px) rotate(-.7deg); border-color: rgba(192,177,255,.57); box-shadow: 0 17px 28px rgba(0,0,0,.18); }
+      .game-card:nth-child(2):hover { transform: translateY(-5px) rotate(.7deg); }
+      .game-icon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 15px; font-size: 1.35rem; font-weight: 950; }
+      .game-card.valorant .game-icon { background: linear-gradient(135deg, #ff5866, #bd2d58); }
+      .game-card.lienquan .game-icon { background: linear-gradient(135deg, #6dc5ff, #4868e2); font-size: .78rem; letter-spacing: -.06em; }
+      .game-card.steam .game-icon { background: linear-gradient(135deg, #2d4c85, #16213e); }
+      .game-card h4 { margin: 27px 0 6px; font-size: 1rem; }
+      .game-card p { margin: 0; color: var(--muted); font-size: .77rem; line-height: 1.5; }
+      .game-tag { position: absolute; right: 14px; bottom: 13px; color: rgba(255,255,255,.5); font-size: .63rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+
+      /* Support */
+      .support-shell {
+        margin-top: 36px;
+        padding: clamp(24px, 4vw, 36px);
+        border: 1px solid rgba(228,216,255,.18);
+        border-radius: 32px;
+        background:
+          radial-gradient(circle at 10% 10%, rgba(255, 155, 181, .15), transparent 18rem),
+          radial-gradient(circle at 90% 90%, rgba(126, 112, 232, .18), transparent 20rem),
+          rgba(20, 18, 49, .66);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+      @media (min-width: 921px) {
+        .support-shell {
+          width: 65%;
+          max-width: 900px;
+          margin-inline: auto;
+        }
+      }
+      .support-card {
+        display: grid;
+        grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+        gap: clamp(20px, 3vw, 30px);
+        align-items: center;
+      }
+      .support-qr {
+        display: grid;
+        place-items: center;
+        min-height: 220px;
+        border: 1px dashed rgba(255,190,208,.5);
+        border-radius: 24px;
+        background: rgba(255,255,255,.035);
+        color: var(--pink-bright);
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        padding: 20px;
+      }
+      .support-qr img {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        border-radius: 18px;
+        object-fit: contain;
+      }
+      .support-details {
+        display: grid;
+        gap: 14px;
+      }
+      .support-details p {
+        margin: 0;
+        font-size: clamp(1rem, 1.9vw, 1.22rem);
+        line-height: 1.5;
+      }
+      .support-label,
+      .support-bank,
+      .support-thanks {
+        color: var(--ink);
+        font-weight: 800;
+      }
+      .support-thanks { color: var(--pink-bright); }
+
+      /* Community */
+      .fans-header { display: flex; justify-content: space-between; gap: 24px; align-items: end; }
+      .fans-header .section-lede { margin-bottom: 0; }
+      .data-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        flex: 0 0 auto;
+        padding: .55rem .7rem;
+        border: 1px solid rgba(255,216,128,.28);
+        border-radius: 999px;
+        color: #f7dea1;
+        background: rgba(255,216,128,.07);
+        font-size: .7rem;
+        font-weight: 800;
+      }
+      .data-note::before { content: "i"; display:grid; width:15px; height:15px; place-items:center; border:1px solid currentColor; border-radius:50%; font-size:.59rem; font-family: Georgia, serif; }
+      .fans-layout { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr); gap: 28px; margin-top: 42px; }
+      .data-card { overflow: hidden; }
+      .data-card-header { display: flex; align-items: center; justify-content: space-between; gap: 13px; padding: 22px 24px 17px; }
+      .data-card-title { margin: 0; font-size: 1.08rem; }
+      .data-card-subtitle { margin: 4px 0 0; color: var(--subtle); font-size: .76rem; }
+      .table-wrap { width: 100%; overflow-x: auto; scrollbar-color: rgba(185,166,255,.55) transparent; }
+      table { width: 100%; border-collapse: collapse; text-align: left; }
+      caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      th {
+        padding: 12px 23px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        color: var(--subtle);
+        background: rgba(9,9,30,.36);
+        font-size: .65rem;
+        font-weight: 800;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: color .35s ease;
+      }
+      td {
+        padding: 14px 23px;
+        border-bottom: 1px solid rgba(220,214,255,.08);
+        color: var(--ink);
+        font-size: .8rem;
+        white-space: nowrap;
+        transition: color .35s ease;
+      }
+      tbody tr { transition: background .18s ease; }
+      tbody tr:hover { background: rgba(255,255,255,.045); }
+      tbody tr:last-child td { border-bottom: 0; }
+      .fan-handle { color: var(--ink); font-weight: 800; transition: color .35s ease; }
+      .fan-date { color: var(--muted); font-variant-numeric: tabular-nums; }
+      .fan-badge { display: inline-flex; padding: .25rem .46rem; border: 1px solid rgba(185,166,255,.25); border-radius: 999px; color: var(--ink); background: rgba(185,166,255,.08); font-size: .66rem; font-weight: 800; transition: color .35s ease; }
+      .search-field { position: relative; width: min(180px, 38vw); }
+      .search-field svg { position: absolute; top: 50%; left: 10px; width: 15px; transform: translateY(-50%); color: var(--subtle); }
+      .search-field input { width: 100%; padding: .55rem .6rem .55rem 32px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); outline: none; background: rgba(255,255,255,.045); font-size: .72rem; }
+      .search-field input::placeholder { color: var(--subtle); }
+      .search-field input:focus { border-color: var(--lilac); }
+      .leader-meta { display: flex; align-items: center; gap: 8px; color: var(--subtle); font-size: .71rem; font-weight: 700; }
+      .stream-indicator { display: inline-flex; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 11px var(--mint); }
+      .leader-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+      .table-button { min-height: 30px; padding: .34rem .5rem; border: 1px solid var(--line); border-radius: 9px; color: #e6e1f7; background: rgba(255,255,255,.04); font-size: .65rem; font-weight: 800; transition: background .18s ease, border-color .18s ease, transform .18s ease; }
+      .table-button:hover, .table-button:focus-visible { border-color: rgba(255,190,208,.52); background: rgba(255,255,255,.09); transform: translateY(-1px); }
+      .rank-cell { width: 55px; }
+      .rank-badge { position: relative; display: inline-grid; width: 31px; height: 31px; place-items: center; border: 1px solid rgba(255,255,255,.17); border-radius: 10px; color: #e6e0f8; background: rgba(255,255,255,.07); font-size: .78rem; font-weight: 900; }
+      .rank-badge.rank-1 { border-color: rgba(255,216,128,.76); color: #4b3516; background: linear-gradient(135deg, #fff0b1, #edbb5c); box-shadow: 0 0 0 4px rgba(255,216,128,.09), 0 0 27px rgba(255,216,128,.23); }
+      .rank-badge.rank-1::before { content: "♛"; position:absolute; top:-14px; left:50%; color:var(--gold); font-size: .9rem; filter: drop-shadow(0 0 6px rgba(255,216,128,.7)); transform:translateX(-50%); animation:crown-dance 2.8s ease-in-out infinite; }
+      .rank-badge.rank-2 { border-color: rgba(207,213,239,.63); color: #27304d; background: linear-gradient(135deg, #f1f4ff, #aeb8d4); box-shadow: 0 0 20px rgba(207,213,239,.12); }
+      .rank-badge.rank-3 { border-color: rgba(233,168,115,.64); color: #4a2d1d; background: linear-gradient(135deg, #ffd0a1, #c47b4a); box-shadow: 0 0 20px rgba(233,168,115,.11); }
+      .supporter {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--ink);
+        font-weight: 800;
+        transition: color .35s ease;
+      }
+      .mini-avatar { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 10px; color: white; font-size: .67rem; font-weight: 900; }
+      .avatar-pink { background: linear-gradient(135deg, #fb82b0, #7a5adc); }
+      .avatar-blue { background: linear-gradient(135deg, #6ec6ff, #4876ca); }
+      .avatar-gold { background: linear-gradient(135deg, #ffce72, #d17b64); }
+      .avatar-mint { background: linear-gradient(135deg, #7de4c3, #3c9fbe); }
+      .avatar-lilac { background: linear-gradient(135deg, #b9a3ff, #7054ca); }
+      .amount {
+        color: var(--pink-bright);
+        font-weight: 850;
+        font-variant-numeric: tabular-nums;
+        transition: color .35s ease;
+      }
+      .support-note { display:block; max-width:105px; overflow:hidden; color:var(--subtle); font-size:.69rem; text-overflow:ellipsis; white-space:nowrap; }
+      .movement { display: inline-flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 850; }
+      .movement.up { color: var(--mint); }
+      .movement.down { color: var(--red); }
+      .movement.same { color: var(--subtle); }
+      .movement b { font-size: .9rem; }
+      .leader-row.flash { animation: row-flash .9s ease both; }
+      .legend { display: flex; flex-wrap: wrap; gap: 11px; padding: 14px 23px 20px; color: var(--subtle); font-size: .67rem; }
+      .legend span { display:inline-flex; align-items:center; gap:4px; }
+      .legend .up { color: var(--mint); } .legend .down { color: var(--red); }
+      .fan-empty { display:none; padding: 29px 23px; color:var(--muted); font-size:.85rem; text-align:center; }
+
+      /* Contact */
+      .contact-shell {
+        position: relative;
+        display: grid;
+        grid-template-columns: .86fr 1.14fr;
+        gap: 28px;
+        margin-top: 44px;
+        padding: clamp(20px, 4vw, 42px);
+        overflow: hidden;
+        border: 1px solid rgba(228,216,255,.18);
+        border-radius: 32px;
+        background:
+          radial-gradient(circle at 8% 6%, rgba(255, 171, 203, .17), transparent 20rem),
+          radial-gradient(circle at 92% 90%, rgba(154, 125, 250, .18), transparent 23rem),
+          rgba(20, 18, 49, .66);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+      .contact-shell::before, .contact-shell::after { content:""; position:absolute; width:1px; background: linear-gradient(transparent, rgba(255,216,128,.45), transparent); }
+      .contact-shell::before { top: 0; bottom: 0; left: 50%; opacity:.32; }
+      .contact-shell::after { top: 6%; left: 5%; height: 54px; transform: rotate(42deg); box-shadow: 360px 55px 0 -0.5px rgba(255,216,128,.3); }
+      .contact-info, .contact-form { position: relative; z-index: 1; }
+      .contact-info h3 { max-width: 420px; margin: 0; font-size: clamp(1.65rem, 3vw, 2.3rem); letter-spacing: -.05em; line-height: 1.05; }
+      .contact-info > p { max-width: 430px; margin: 16px 0 27px; color: var(--muted); }
+      .directory { display: grid; gap: 10px; }
+      .directory-link { display: flex; align-items: center; gap: 13px; padding: 12px; border: 1px solid rgba(220,214,255,.11); border-radius: 15px; background: rgba(255,255,255,.035); transition: border-color .2s ease, transform .2s ease, background .2s ease; }
+      .directory-link:hover, .directory-link:focus-visible { transform: translateX(4px); border-color: rgba(255,190,208,.48); background: rgba(255,255,255,.07); }
+      .directory-icon { display: grid; width: 34px; height: 34px; place-items: center; flex: 0 0 auto; border-radius: 11px; color: var(--pink-bright); background: rgba(255,155,181,.12); }
+      .directory-icon svg { width: 17px; height: 17px; fill: currentColor; }
+      .directory-copy { min-width: 0; }
+      .directory-copy strong {
+        display:block;
+        color: var(--ink);
+        font-size:.8rem;
+        transition: color .35s ease;
+      }
+      .directory-copy span {
+        display:block;
+        overflow:hidden;
+        margin-top:2px;
+        color: var(--muted);
+        font-size:.72rem;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        transition: color .35s ease;
+      }
+      .reply-note { margin-top: 17px; color:var(--subtle); font-size:.72rem; }
+      .form-head { display: flex; align-items: center; gap: 9px; margin-bottom: 19px; }
+      .form-head .torii { color: var(--gold); font-size: 1.22rem; }
+      .form-head h3 { margin:0; font-size:1.15rem; }
+      .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .field { display:grid; gap:6px; }
+      .field.full { grid-column: 1 / -1; }
+      .field label { color:#dcd8ee; font-size:.72rem; font-weight:800; }
+      .field input, .field select, .field textarea { width:100%; border:1px solid var(--line); border-radius:12px; padding:.72rem .78rem; color:var(--ink); outline:none; background:rgba(8, 8, 27, .46); font-size:.82rem; transition:border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+      .field textarea { min-height: 101px; resize: vertical; }
+      .field select { appearance: auto; }
+      .field input::placeholder, .field textarea::placeholder { color:#716e91; }
+      .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--lilac); background:rgba(8,8,27,.65); box-shadow:0 0 0 4px rgba(183,165,255,.11); }
+      .form-foot { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:14px; }
+      .form-submit { min-height:44px; padding:.65rem .94rem; border:0; border-radius:12px; color:#251532; background:linear-gradient(135deg, #ffe0a3, #ffb7cb 70%, #c4b8ff); font-size:.82rem; font-weight:900; transition: transform .2s ease, filter .2s ease; }
+      .form-submit:hover { transform: translateY(-2px); filter: brightness(1.04); }
+      .form-status { margin:0; color:var(--mint); font-size:.75rem; font-weight:700; }
+      .form-status:empty { display:none; }
+      .form-help { flex: 1 1 170px; margin: 0; color: var(--subtle); font-size: .68rem; line-height: 1.45; }
+
+      footer { width:var(--page); margin:0 auto; padding: 25px 0 36px; display:flex; justify-content:space-between; gap:20px; border-top:1px solid rgba(220,214,255,.1); color:var(--subtle); font-size:.72rem; }
+      footer p { margin:0; }
+      .back-top { color:#d8d2ed; font-weight:800; }
+      .back-top:hover { color:var(--pink-bright); }
+
+      @keyframes hover-float { 0%, 100% { transform: translateY(-50%) translateY(0); } 50% { transform: translateY(-50%) translateY(-12px); } }
+      @keyframes twinkle { 0%,100% { transform:scale(.65); opacity:.34; } 50% { transform:scale(1.35); opacity:1; } }
+      @keyframes crown-dance { 0%,100% { transform:translateX(-50%) translateY(0) rotate(-4deg); } 50% { transform:translateX(-50%) translateY(-3px) rotate(5deg); } }
+      @keyframes row-flash { 0% { background:rgba(255,216,128,.25); } 100% { background:transparent; } }
+
+      @media (max-width: 920px) {
+        :root { --page: min(100% - 36px, 690px); }
+        .nav-shell { padding-left: 14px; }
+        .menu-button { display:grid; place-items:center; }
+        .nav-links { position:absolute; top:calc(100% + 8px); right:0; left:0; width:var(--page); margin:auto; padding:9px; display:grid; grid-template-columns:repeat(2,1fr); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); backdrop-filter:blur(18px); opacity:0; visibility:hidden; transform:translateY(-7px); transition:opacity .2s ease, transform .2s ease, visibility .2s; }
+        .nav-links.is-open { opacity:1; visibility:visible; transform:translateY(0); }
+        .nav-link { padding:.7rem .8rem; }
+        .hero { min-height:auto; padding: 148px 0 133px; grid-template-columns:1fr; gap:15px; }
+        .hero-copy { order:1; padding-top:0; }
+        .hero-art-wrap { order:2; min-height: 470px; margin: -12px -22px 0; }
+        .avatar-card {
+          position: static;
+          width: min(570px, 100%);
+          transform: none;
+          right: auto;
+          margin: 0 auto;
+          animation: none;
+        }
+        .art-note { right:7%; bottom:2%; }
+        .social-rail { bottom: 45px; }
+        .about-grid, .fans-layout, .contact-shell { grid-template-columns:1fr; }
+        .games { grid-template-columns:repeat(3,1fr); }
+        .contact-shell::before { display:none; }
+        .support-card {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+        }
+        .support-qr {
+          width: min(100%, 340px);
+          min-height: auto;
+          padding: 22px;
+        }
+        .support-details {
+          justify-items: center;
+        }
+      }
+      @keyframes hover-float-mobile { 0%, 100% { transform:translate(50%, -50%) translateY(0); } 50% { transform:translate(50%, -50%) translateY(-10px); } }
+
+      @media (max-width: 560px) {
+        :root { --page: calc(100% - 28px); }
+        .site-header { padding:9px 0; }
+        .site-header.is-scrolled { padding:7px 0; }
+        .nav-shell { min-height:52px; }
+        .brand { font-size:.86rem; }
+        .brand-mark { width:28px; height:28px; }
+        .hero { padding-top:112px; padding-bottom:123px; }
+        .hero h1 { font-size:clamp(3.25rem, 18.7vw, 5rem); }
+        .hero-text { margin-top:22px; font-size:.97rem; }
+        .hero-actions { margin-top:24px; }
+        .button { width:100%; }
+        .hero-art-wrap { min-height:360px; margin: 8px -12px 0; }
+        .avatar-card {
+          position: static;
+          width: 100%;
+          max-width: 430px;
+          transform: none;
+          margin: 0 auto;
+          animation: none;
+        }
+        .art-note { right:1%; bottom:0; font-size:.69rem; }
+        .social-rail { right:0; bottom:38px; gap:8px; }
+        .social-label { display:none; }
+        .social-link { width:40px; height:40px; }
+        .section { padding:79px 0; }
+        .section-title { font-size:clamp(2.05rem, 12vw, 3.1rem); }
+        .about-grid { margin-top:31px; }
+        .profile-story, .schedule-card { padding:21px; }
+        .trait-grid { grid-template-columns:1fr; }
+        .trait { min-height:auto; }
+        .schedule-list li { grid-template-columns:72px 55px minmax(0, 1fr); gap:5px; font-size:.76rem; }
+        .games { grid-template-columns:1fr; }
+        .game-card { min-height:145px; }
+        .game-card h4 { margin-top:20px; }
+        .fans-header { display:block; }
+        .data-note { margin-top:18px; }
+        .fans-layout { margin-top:28px; }
+        .data-card-header { align-items:flex-start; padding:18px 16px 13px; }
+        .leader-controls { justify-content:flex-start; }
+        th { padding:11px 16px; }
+        td { padding:13px 16px; }
+        .search-field { width:135px; }
+        .contact-shell { padding:20px; border-radius:24px; }
+        .form-grid { grid-template-columns:1fr; }
+        .field.full { grid-column:auto; }
+        /* Minimize schedule editing controls on mobile */
+        .schedule-list.editing li { display: grid; grid-template-columns: 1fr; gap: 8px; align-items: start; }
+        .schedule-edit-field { width: 100%; }
+        .schedule-edit-field select,
+        .schedule-edit-field input { width: 100%; font-size: 0.95rem; padding: .5rem .6rem; }
+        .schedule-remove { display: none; }
+        .schedule-editor .schedule-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        /* Reduce prominence of admin toggle on small screens */
+        #schedule-admin-toggle { padding: .36rem .5rem; font-size: .85rem; }
+        .support-shell { padding: 20px; }
+        .support-card { gap: 16px; }
+        .support-qr { width: 100%; padding: 18px; }
+        .support-details { gap: 12px; }
+        .support-details p { font-size: 1rem; }
+        footer { flex-direction:column; padding-top:19px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!--Intro Tonight-->
+    <div id="introScreen" class="intro-screen phase-enter" aria-hidden="false">
+
+      <!-- Star Background -->
+    <div class="sky intro-star-bg">
+    <div class="stars-layer" id="starsLayer"></div>
+    <div class="shooting-stars" id="shootingStars"></div>
+    </div>
+
+      <div class="intro-bg-layer">
+        <div class="intro-orb orb-1"></div>
+        <div class="intro-orb orb-2"></div>
+        <div class="grid-bg opacity-30"></div>
+      </div>
+
+      <div class="intro-content-wrapper">
+        <div class="intro-icon-list">
+          <div class="intro-icon-item"><span class="intro-icon">‧₊˚ ☾.</span></div>
+          <div class="intro-icon-item"><span class="intro-icon">🍵</span></div>
+          <div class="intro-icon-item"><span class="intro-icon">⚡</span></div>
+        </div>
+
+        <div class="intro-text-center">
+          <h1 class="intro-heading">
+            <div class="intro-heading-row">
+              <span class="intro-word">WELCOME</span>
+              <span class="intro-word">TO</span>
+              <span class="intro-word">HIME</span>
+            </div>
+            <div class="intro-heading-row highlight-row">
+              <span class="intro-word highlighted">PORTFOLIO</span>
+              <span class="intro-word highlighted">WEBSITE</span>
+            </div>
+          </h1>
+
+          <div class="intro-subtext-container">
+            <div class="intro-subtext-inner">
+              <span class="intro-subtext-prefix">⊕</span>
+              <span class="intro-typewriter" id="introTypewriter"></span>
+              <span class="intro-cursor">|</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-loading">
+
+    <div class="loading-track">
+
+        <div class="loading-fill" id="loadingFill">
+
+            <div class="loading-head"></div>
+
+        </div>
+
+    </div>
+
+</div>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+    <header class="site-header" id="site-header">
+      <nav class="nav-shell" aria-label="Điều hướng chính">
+        <a class="brand" href="#home" aria-label="HIME PROFILE — về trang đầu">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>HIME PROFILE</span>
+        </a>
+        <button class="theme-switch" id="theme-switch" type="button" aria-label="Switch dark and light mode" aria-pressed="false">
+          <span class="track" aria-hidden="true"><span class="thumb"></span></span>
+          <span class="theme-label" id="theme-label">Dark</span>
+        </button>
+        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Mở menu điều hướng">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6.75h18v1.7H3zm0 4.4h18v1.7H3zm0 4.4h18v1.7H3z"/></svg>
+        </button>
+        <div class="nav-links" id="primary-nav">
+          <a class="nav-link is-active" href="#home">Home</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#support">Support Hime</a>
+          <a class="nav-link" href="#fans">Registered Fans</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="hero-kicker"><span class="live-dot" aria-hidden="true"></span>ヒメ — virtual creator</p>
+          <h1 id="hero-title"><span>HIME</span>VTUBER</h1>
+          <p class="hero-text">Chào, Hime đây! Một cô nàng VTuber mê Livestream chơi game, những câu chuyện nhỏ và tiếng cười thật to. Ghé vào stream, cùng mình biến mọi màn rank thành một kỷ niệm dễ thương nhé.</p>
+          <div class="hero-meta" aria-label="Thông tin nhanh về Hime">
+            <span class="hero-chip">VN / EN</span>
+            <span class="hero-chip">GMT+7</span>
+            <span class="hero-chip">Games • Chat • Comic and dynamic</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="#about">Xem lịch stream <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#contact">Gặp Hime <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="hero-art-wrap" aria-label="Minh họa gốc của Hime, VTuber tóc bạc tím cầm tay cầm chơi game" role="img">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="star-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="avatar-card">
+            <img src="../image/Hime_2.png" alt="Illustration of Hime, a VTuber character" />
+          </div>
+          <div class="art-note"><span class="star" aria-hidden="true">☀</span> Day’s mood: <strong>Comic and dynamic</strong></div>
+        </div>
+
+        <div class="social-rail" aria-label="Liên kết mạng xã hội">
+          <p class="social-label">Find Hime</p>
+          <a class="social-link" data-tip="GitHub" href="https://github.com/haidanglek7-dotcom" target="_blank" rel="noopener noreferrer" aria-label="GitHub của Hime (mở trang mới)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a10 10 0 0 0-3.16 19.49c.5.09.68-.21.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.04 1.53 1.04.9 1.53 2.34 1.09 2.91.84.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 6.8c.85 0 1.7.11 2.49.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.9.68 1.81v2.69c0 .27.18.58.69.48A10 10 0 0 0 12 2.2Z"/></svg>
+          </a>
+          <a class="social-link" data-tip="Facebook" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook của Hime (mở trang mới)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.8 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.54-1.5H17V3.73c-.3-.04-1.3-.13-2.48-.13-2.45 0-4.12 1.5-4.12 4.25V9.9H7.63V13h2.78v8h3.39Z"/></svg>
+          </a>
+          <a class="social-link" data-tip="Instagram" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram của Hime (mở trang mới)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 2h9.2A5.4 5.4 0 0 1 22 7.4v9.2a5.4 5.4 0 0 1-5.4 5.4H7.4A5.4 5.4 0 0 1 2 16.6V7.4A5.4 5.4 0 0 1 7.4 2Zm-.2 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm9.99 1.5a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6ZM12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Z"/></svg>
+          </a>
+          <a class="social-link" data-tip="TikTok" href="https://www.tiktok.com/@himehimz1711" target="_blank" rel="noopener noreferrer" aria-label="TikTok của Hime (mở trang mới)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 7.5a5.79 5.79 0 0 1-3.59-1.24v7.1a5.74 5.74 0 1 1-4.95-5.69v2.9a2.94 2.94 0 1 0 2.05 2.8V2h2.9a5.8 5.8 0 0 0 3.6 4.01v1.49Z"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <p class="eyebrow">Small things, big vibes</p>
+        <h2 class="section-title" id="about-title">A little more about Hime.</h2>
+        <p class="section-lede">Hime là người bạn đồng hành lúc buổi ngày: thích một ván game căng thẳng, một playlist dịu dàng và những cuộc trò chuyện không cần phải vội.</p>
+        <div class="about-grid">
+          <aside class="schedule-card panel" aria-labelledby="schedule-title">
+            <div class="card-head">
+              <div>
+                <h3 id="schedule-title">Livestream schedule</h3>
+                <p class="data-card-subtitle">Một góc hẹn cố định mỗi tuần.</p>
+              </div>
+              <div class="schedule-toolbar">
+                <span class="timezone">GMT+7</span>
+                <button class="table-button" id="schedule-admin-toggle" type="button">Edit schedule</button>
+              </div>
+            </div>
+            <ul class="schedule-list" id="schedule-list" aria-live="polite">
+              <li><strong class="schedule-day">Monday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Tuesday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Wednesday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Thursday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Friday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Saturday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+              <li><strong class="schedule-day">Sunday</strong><span class="schedule-time">08:00</span><span class="schedule-show">Valorant — Aim &amp; Chill</span></li>
+            </ul>
+            <form class="schedule-editor" id="schedule-editor" hidden>
+              <p class="schedule-editor-title">Admin edit mode</p>
+              <div class="schedule-actions">
+                <button class="table-button" type="button" id="add-schedule-row">Add schedule</button>
+                <button class="form-submit" type="button" id="save-schedule">Save schedule</button>
+                <button class="table-button" type="button" id="cancel-schedule-edit">Cancel</button>
+              </div>
+              <p class="form-help">Use the admin password “himeadmin” to unlock editing. Changes stay in this browser.</p>
+              <p class="schedule-status" id="schedule-status" role="status"></p>
+            </form>
+          </aside>
+          <article class="profile-story panel">
+            <p class="story-quote">“Mục tiêu của mỗi stream là để bạn rời đi với một nụ cười — kể cả khi chúng ta vừa (thua) rank.”</p>
+            <div class="trait-grid">
+              <div class="trait"><span class="trait-icon" aria-hidden="true">✦</span><h3>Sở thích</h3><p>Cày rank #1 Radian, thích đồ ăn, nước ngọt, và hơn hết là chơi game cùng với Fans.</p></div>
+              <div class="trait"><span class="trait-icon" aria-hidden="true">🍜</span><h3>Món yêu thích</h3><p>Mỳ Spaghetti, chân gà nướng, mì cay bò Mỹ, Matcha Latte và kem trứng.</p></div>
+              <div class="trait"><span class="trait-icon" aria-hidden="true">♡</span><h3>Thói quen đáng yêu</h3><p>Luôn chuẩn bị nước ấm, nhắc chat nghỉ mắt và ăn mừng cả những chiến thắng bé xíu.</p></div>
+              <div class="trait"><span class="trait-icon" aria-hidden="true">⌁</span><h3>Đang luyện tập</h3><p>Aim trong Valorant, call team trong Liên Quân, và không để backlog Steam dài thêm nữa.</p></div>
+            </div>
+          </article>
+        </div>
+        <div class="game-deck">
+          <h3>Frequently played games <span aria-hidden="true">✦</span></h3>
+          <div class="games">
+            <article class="game-card valorant"><span class="game-icon"  aria-hidden="true">V</span><h4>Valorant</h4><p>Aim chưa hoàn hảo, vibe và gamescence tự tin 10/10.</p><span class="game-tag">Aim &amp; Chill</span></article>
+            <article class="game-card lienquan"><span class="game-icon" aria-hidden="true">AOV</span><h4>Liên Quân Mobile</h4><p>Call team rõ ràng, party càng đông càng vui.</p><span class="game-tag">Party queue</span></article>
+            <article class="game-card steam"><span class="game-icon" aria-hidden="true">◉</span><h4>Steam</h4><p>Những đêm thử game mới và dọn backlog.</p><span class="game-tag">Variety</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="support" aria-labelledby="support-title">
+        <p class="eyebrow">Support Hime</p>
+        <h2 class="section-title" id="support-title">❤️ Support Hime</h2>
+        <p class="section-lede">If you enjoy my livestreams, a cup of milk tea will give Hime more motivation to continue creating content and Livestream.</p>
+        <div class="support-shell panel">
+          <div class="support-card">
+            <div class="support-qr" aria-label="QR code for supporting Hime">
+              <img src="../image/qrCodeHime.png" alt="QR code to support Hime" />
+            </div>
+            <div class="support-details">
+              <p class="support-label">👤 HOANG THUY HUYEN</p>
+              <p class="support-account number">🔗 0776288777</p>
+              <p class="support-bank">🏦 MB BANK</p>
+              <p class="support-thanks">🎁 Thank you for your support!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="fans" aria-labelledby="fans-title">
+        <div class="fans-header">
+          <div>
+            <p class="eyebrow">Our little constellation</p>
+            <h2 class="section-title" id="fans-title">Registered fans.</h2>
+            <p class="section-lede">Những ngôi sao đã chọn đồng hành cùng Hime. Cảm ơn vì đã biến góc nhỏ này thành một cộng đồng ấm áp.</p>
+          </div>
+          <span class="data-note">TikTok data · demo only</span>
+        </div>
+        <div class="fans-layout">
+          <article class="data-card panel" aria-labelledby="fan-table-title">
+            <div class="data-card-header">
+              <div><h3 class="data-card-title" id="fan-table-title">Fan registry</h3><p class="data-card-subtitle">Mẫu dữ liệu công khai, không liên kết tài khoản TikTok thật.</p></div>
+              <label class="search-field"><span class="sr-only">Tìm trong danh sách fan</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10.7 3a7.7 7.7 0 1 0 4.77 13.74l4.4 4.4 1.41-1.41-4.4-4.4A7.7 7.7 0 0 0 10.7 3Zm0 2a5.7 5.7 0 1 1 0 11.4 5.7 5.7 0 0 1 0-11.4Z"/></svg><input id="fan-search" type="search" placeholder="Tìm fan..." autocomplete="off"/></label>
+            </div>
+            <div class="table-wrap">
+              <table id="fan-table"><caption>Danh sách fan đăng ký mẫu</caption><thead><tr><th scope="col">TikTok ID</th><th scope="col">Followed since</th><th scope="col">Favorite corner</th><th scope="col">Badge</th></tr></thead><tbody>
+                <tr><td class="fan-handle">@Tiyuan</td><td class="fan-date">21 May 2026</td><td>Late-night chat</td><td><span class="fan-badge">Moonseed</span></td></tr>
+                <tr><td class="fan-handle">@LYCO GAMING</td><td class="fan-date">18 Apr 2026</td><td>Valorant ace clips</td><td><span class="fan-badge">Starlight</span></td></tr>
+                <tr><td class="fan-handle">@Takara Yume</td><td class="fan-date">11 May 2026</td><td>Steam Saturdays</td><td><span class="fan-badge">Cozy Comet</span></td></tr>
+                <tr><td class="fan-handle">@Annguyn8833</td><td class="fan-date">04 Jun 2026</td><td>Liên Quân party</td><td><span class="fan-badge">Pink Pixel</span></td></tr>
+                <tr><td class="fan-handle">@Hikaru</td><td class="fan-date">29 May 2026</td><td>Song requests</td><td><span class="fan-badge">Day One</span></td></tr>
+                <tr><td class="fan-handle">@skaignx</td><td class="fan-date">19 Apr 2026</td><td>Steam Saturdays</td><td><span class="fan-badge">Day One</span></td></tr>
+                <tr><td class="fan-handle">@Hn</td><td class="fan-date">05 May 2026</td><td>Valorant ace clips</td><td><span class="fan-badge">Day One</span></td></tr>
+                <tr><td class="fan-handle">@Reimu Hakurei</td><td class="fan-date">09 May 2026</td><td>Song requests</td><td><span class="fan-badge">Day One</span></td></tr>
+              </tbody></table>
+              <p class="fan-empty" id="fan-empty">Chưa thấy ngôi sao nào khớp với tìm kiếm này.</p>
+            </div>
+          </article>
+
+          <article class="data-card panel" aria-labelledby="leaderboard-title">
+            <div class="data-card-header">
+              <div><h3 class="data-card-title" id="leaderboard-title">Donation leaderboard</h3><p class="data-card-subtitle">Thứ hạng thay đổi trong bản minh hoạ giao diện.</p></div>
+              <div class="leader-controls"><button class="table-button" id="refresh-now" type="button">Refresh demo</button><button class="table-button" id="toggle-live" type="button" aria-pressed="false">Pause motion</button><span class="leader-meta"><span class="stream-indicator" aria-hidden="true"></span><span>LIVE DEMO</span></span></div>
+            </div>
+            <div class="table-wrap">
+              <table><caption>Xếp hạng ủng hộ mẫu</caption><thead><tr><th scope="col">Rank</th><th scope="col">Supporter</th><th scope="col">Total</th><th scope="col">Last support</th><th scope="col">Change</th></tr></thead><tbody id="leaderboard-body">
+                <tr class="leader-row"><td class="rank-cell"><span class="rank-badge rank-1">1</span></td><td><span class="supporter"><span class="mini-avatar avatar-pink" aria-hidden="true">Ti</span>@Tiyuan</span></td><td class="amount">₫20.500.000</td><td><span class="support-note">Moonlit Cheer</span></td><td><span class="movement up" aria-label="Tăng 1 hạng"><b aria-hidden="true">↑</b> +1</span></td></tr>
+                <tr class="leader-row"><td class="rank-cell"><span class="rank-badge rank-2">2</span></td><td><span class="supporter"><span class="mini-avatar avatar-blue" aria-hidden="true">Ta</span>@Takara Yume</span></td><td class="amount">₫1.800.000</td><td><span class="support-note">Cozy Raid</span></td><td><span class="movement up" aria-label="Tăng 3 hạng"><b aria-hidden="true">↑</b> +3</span></td></tr>
+                <tr class="leader-row"><td class="rank-cell"><span class="rank-badge rank-3">3</span></td><td><span class="supporter"><span class="mini-avatar avatar-gold" aria-hidden="true">Hi</span>@Hikaru</span></td><td class="amount">₫1.200.000</td><td><span class="support-note">Sakura Spark</span></td><td><span class="movement down" aria-label="Giảm 1 hạng"><b aria-hidden="true">↓</b> -1</span></td></tr>
+                <tr class="leader-row"><td class="rank-cell"><span class="rank-badge rank-4">4</span></td><td><span class="supporter"><span class="mini-avatar avatar-mint" aria-hidden="true">an</span>@annguyn8833</span></td><td class="amount">₫2.000.000</td><td><span class="support-note">GG Gift</span></td><td><span class="movement down" aria-label="Giảm 2 hạng"><b aria-hidden="true">↓</b> -2</span></td></tr>
+                <tr class="leader-row"><td class="rank-cell"><span class="rank-badge rank-5">5</span></td><td><span class="supporter"><span class="mini-avatar avatar-lilac" aria-hidden="true">LY</span>@LYCO GAMING</span></td><td class="amount">₫760.000</td><td><span class="support-note">Night Owl Tip</span></td><td><span class="movement up" aria-label="Tăng 2 hạng"><b aria-hidden="true">↑</b> +2</span></td></tr>
+              </tbody></table>
+            </div>
+            <div class="legend"><span><span class="up" aria-hidden="true">↑</span> tăng hạng</span><span><span class="down" aria-hidden="true">↓</span> giảm hạng</span><span id="last-refresh">Demo refreshed just now</span><span class="sr-only" id="leaderboard-update" aria-live="polite"></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">Moon Mail Station</p>
+        <h2 class="section-title" id="contact-title">Let’s make something <span style="color:var(--pink-bright)">sparkly.</span></h2>
+        <p class="section-lede">Một cổng liên lạc cho collab, clip ngắn, lời mời hoặc một lá thư thật dễ thương.</p>
+        <div class="contact-shell">
+          <div class="contact-info">
+            <h3>Drop a note at Hime’s Vtuber post office.</h3>
+            <p>Thư của bạn sẽ được xếp ngay ngắn cạnh hộp sticker và một cốc trà đào. Hime hoặc đội ngũ sẽ hồi âm sớm nhất có thể.</p>
+            <div class="directory">
+              <a class="directory-link" href="mailto:harumodie@gmail.com"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3V5Zm2 2v.27l7 5.44 7-5.44V7l-7 5.44L5 7Zm14 10V9.81l-7 5.44-7-5.44V17h14Z"/></svg></span><span class="directory-copy"><strong>Business &amp; Collabs</strong><span>harumodie@gmail.com</span></span></a>
+              <a class="directory-link" href="https://discord.gg/xVRDHkJnam" target="_blank" rel="noopener noreferrer"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19.5 4.2A16.6 16.6 0 0 0 15.4 3l-.5 1.05a15.4 15.4 0 0 0-5.8 0L8.6 3a16.6 16.6 0 0 0-4.1 1.2C1.9 8.1 1.2 11.9 1.5 15.7A16.4 16.4 0 0 0 6.5 18l1.2-1.6a9.8 9.8 0 0 1-1.9-.92l.47-.37c3.69 1.72 7.75 1.72 11.4 0l.48.37c-.61.36-1.25.67-1.9.92l1.2 1.6a16.3 16.3 0 0 0 5-2.29c.37-4.4-.63-8.17-2.93-11.51ZM8.5 13.4c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2 1.8.9 1.78 2c0 1.1-.79 2-1.78 2Zm7 0c-.98 0-1.78-.9-1.78-2s.79-2 1.78-2 1.8.9 1.78 2c0 1.1-.79 2-1.78 2Z"/></svg></span><span class="directory-copy"><strong>Community</strong><span>Discord · /Lumerians</span></span></a>
+              <a class="directory-link" href="https://www.tiktok.com/@himehimz1711" target="_blank" rel="noopener noreferrer"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19.4 7.5a5.79 5.79 0 0 1-3.59-1.24v7.1a5.74 5.74 0 1 1-4.95-5.69v2.9a2.94 2.94 0 1 0 2.05 2.8V2h2.9a5.8 5.8 0 0 0 3.6 4.01v1.49Z"/></svg></span><span class="directory-copy"><strong>Short-form clips and Livestreams</strong><span>TikTok · @himehimz1711</span></span></a>
+              <a class="directory-link" href="https://www.instagram.com/@himevtuber" target="_blank" rel="noopener noreferrer"><span class="directory-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.4 2h9.2A5.4 5.4 0 0 1 22 7.4v9.2a5.4 5.4 0 0 1-5.4 5.4H7.4A5.4 5.4 0 0 1 2 16.6V7.4A5.4 5.4 0 0 1 7.4 2Zm-.2 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm9.99 1.5a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6ZM12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2Zm0 2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Z"/></svg></span><span class="directory-copy"><strong>Social</strong><span>Instagram · @himevtuber</span></span></a>
+            </div>
+          </div>
+          <form class="contact-form" action="mailto:harumodie@gmail.com" method="post" enctype="text/plain">
+            <div class="form-head"><span class="torii" aria-hidden="true">⛩</span><h3>Gửi thư qua cổng Torii</h3></div>
+            <div class="form-grid">
+              <div class="field"><label for="name">Tên / biệt danh</label><input id="name" name="name" required placeholder="Ví dụ: Luna" /></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="you@example.com" /></div>
+              <div class="field full"><label for="topic">Bạn muốn nói về...</label><select id="topic" name="topic"><option>Collab / brand</option><option>Press / event</option><option>Fan mail</option><option>Something else</option></select></div>
+              <div class="field full"><label for="message">Tin nhắn</label><textarea id="message" name="message" required placeholder="Viết vài dòng thật xinh nhé..."></textarea></div>
+            </div>
+            <div class="form-foot"><button class="form-submit" type="submit">Soạn email cho Hime <span aria-hidden="true">✦</span></button><p class="form-help">Mở email trong ứng dụng mặc định của bạn — form này không lưu dữ liệu.</p><p class="form-status" id="form-status" role="status"></p></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Hime VTuber · Designed for a Vtuber community.</p>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </footer>
+
+    <script>
+      (() => {
+        const body = document.body;
+        const introScreen = document.getElementById('introScreen');
+        const introTypewriter = document.getElementById('introTypewriter');
+        const introLoaderBar = document.getElementById('introLoaderBar');
+        const themeButton = document.getElementById('theme-switch');
+        const themeLabel = document.getElementById('theme-label');
+        const storageKey = 'hime-theme-mode';
+        let manualMode = null;
+
+        const applyTheme = (mode) => {
+          const isLight = mode === 'light';
+          body.classList.toggle('light-mode', isLight);
+          themeButton.setAttribute('aria-pressed', String(isLight));
+          themeLabel.textContent = isLight ? 'Light' : 'Dark';
+        };
+
+        const getAutoMode = () => {
+          const hour = new Date().getHours();
+          return hour >= 7 && hour < 19 ? 'light' : 'dark';
+        };
+
+        const loadTheme = () => {
+          const saved = localStorage.getItem(storageKey);
+          if (saved === 'light' || saved === 'dark') {
+            manualMode = saved;
+            applyTheme(saved);
+            return;
+          }
+          applyTheme(getAutoMode());
+        };
+
+        loadTheme();
+        window.setInterval(() => {
+          if (!manualMode) applyTheme(getAutoMode());
+        }, 60000);
+
+        themeButton.addEventListener('click', () => {
+          const nextMode = manualMode === 'light' ? 'dark' : 'light';
+          manualMode = nextMode;
+          localStorage.setItem(storageKey, nextMode);
+          applyTheme(nextMode);
+        });
+
+        const isIntroTimeAllowed = () => {
+          const now = new Date();
+          const currentMinutes = now.getHours() * 60 + now.getMinutes();
+          const nightStartMinutes = 17 * 60 + 30;
+          const nightEndMinutes = 5 * 60;
+          return currentMinutes >= nightStartMinutes || currentMinutes < nightEndMinutes;
+        };
+
+        const startIntroSequence = () => {
+          if (!introScreen) return;
+
+
+          body.classList.add('intro-active');
+          introScreen.setAttribute('aria-hidden', 'false');
+          introScreen.classList.remove('phase-enter', 'phase-reveal', 'phase-typing', 'phase-exit');
+          introScreen.classList.add('phase-enter');
+
+          setTimeout(() => {
+            introScreen.classList.remove('phase-enter');
+            introScreen.classList.add('phase-reveal');
+            introLoaderBar.style.width = '30%';
+          }, 800);
+
+          setTimeout(() => {
+            introScreen.classList.remove('phase-reveal');
+            introScreen.classList.add('phase-typing');
+            introLoaderBar.style.width = '100%';
+
+            let index = 0;
+            const text = 'himehimz.com';
+            const typeInterval = setInterval(() => {
+              introTypewriter.textContent = text.slice(0, index + 1);
+              index += 1;
+              if (index === text.length) clearInterval(typeInterval);
+            }, 100);
+          }, 2800);
+
+          setTimeout(() => {
+            introScreen.classList.remove('phase-typing');
+            introScreen.classList.add('phase-exit');
+          }, 4200);
+
+          setTimeout(() => {
+            introScreen.remove();
+            body.classList.remove('intro-active');
+          }, 5000);
+        };
+
+        startIntroSequence();
+
+        const header = document.getElementById('site-header');
+        const menuButton = document.getElementById('menu-button');
+        const nav = document.getElementById('primary-nav');
+        const navLinks = [...document.querySelectorAll('.nav-link')];
+
+        const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 22);
+        updateHeader();
+        window.addEventListener('scroll', updateHeader, { passive: true });
+
+        const closeMenu = (returnFocus = false) => {
+          nav.classList.remove('is-open');
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Mở menu điều hướng');
+          if (returnFocus) menuButton.focus();
+        };
+        menuButton.addEventListener('click', () => {
+          const open = nav.classList.toggle('is-open');
+          menuButton.setAttribute('aria-expanded', String(open));
+          menuButton.setAttribute('aria-label', open ? 'Đóng menu điều hướng' : 'Mở menu điều hướng');
+          if (open) navLinks[0].focus();
+        });
+        navLinks.forEach((link) => link.addEventListener('click', () => closeMenu()));
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && nav.classList.contains('is-open')) closeMenu(true);
+        });
+
+        const sectionMap = Object.fromEntries(navLinks.map((link) => [link.getAttribute('href').slice(1), link]));
+        const navObserver = new IntersectionObserver((entries) => {
+          const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          navLinks.forEach((link) => link.classList.toggle('is-active', link === sectionMap[visible.target.id]));
+        }, { rootMargin: '-36% 0px -55% 0px', threshold: [0.04, 0.4, 0.7] });
+        ['home', 'about', 'support', 'fans', 'contact'].forEach((id) => navObserver.observe(document.getElementById(id)));
+
+        const scheduleList = document.getElementById('schedule-list');
+        const scheduleEditor = document.getElementById('schedule-editor');
+        const scheduleAdminToggle = document.getElementById('schedule-admin-toggle');
+        const addScheduleButton = document.getElementById('add-schedule-row');
+        const saveScheduleButton = document.getElementById('save-schedule');
+        const cancelScheduleButton = document.getElementById('cancel-schedule-edit');
+        const scheduleStatus = document.getElementById('schedule-status');
+        const scheduleStorageKey = 'hime-stream-schedule-v1';
+        const adminPassword = 'himeadmin';
+        const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        let scheduleItems = [];
+        let isAdminMode = false;
+        let isEditingSchedule = false;
+ 
+        const defaultSchedule = [
+          { day: 'Monday', time: '08:00', show: 'Valorant — Aim & Chill' },
+          { day: 'Tuesday', time: '08:00', show: 'Liên Quân — Party cùng chat' },
+          { day: 'Wednesday', time: '08:00', show: 'Valorant — Aim & Chill' },
+          { day: 'Thursday', time: '08:00', show: 'Valorant — Aim & Chill' },
+          { day: 'Friday', time: '08:00', show: 'Valorant — Aim & Chill' },
+          { day: 'Saturday', time: '08:00', show: 'Steam Variety Night' },
+          { day: 'Sunday', time: '08:00', show: 'Just Chatting & requests' }
+        ];
+ 
+        const escapeValue = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+ 
+        const loadSchedule = () => {
+          const saved = localStorage.getItem(scheduleStorageKey);
+          if (!saved) return defaultSchedule;
+          try {
+            const parsed = JSON.parse(saved);
+            return Array.isArray(parsed) && parsed.length ? parsed : defaultSchedule;
+          } catch (error) {
+            return defaultSchedule;
+          }
+        };
+ 
+        const dayOptions = (selectedDay) => weekDays.map((day) => `<option value="${day}"${day === selectedDay ? ' selected' : ''}>${day}</option>`).join('');
+ 
+        const renderSchedule = () => {
+          scheduleList.classList.toggle('editing', isEditingSchedule);
+          scheduleList.innerHTML = scheduleItems.map((item, index) => {
+            if (!isEditingSchedule) {
+              return `
+                <li>
+                  <strong class="schedule-day">${escapeValue(item.day)}</strong>
+                  <span class="schedule-time">${escapeValue(item.time)}</span>
+                  <span class="schedule-show">${escapeValue(item.show)}</span>
+                </li>`;
+            }
+ 
+            return `
+              <li data-index="${index}">
+                <label class="schedule-edit-field">
+                  <span class="sr-only">Day</span>
+                  <select name="day-${index}" aria-label="Day">
+                    ${dayOptions(item.day)}
+                  </select>
+                </label>
+                <label class="schedule-edit-field">
+                  <span class="sr-only">Time</span>
+                  <input type="time" name="time-${index}" value="${item.time !== 'TBD' ? escapeValue(item.time) : '00:00'}" min="00:00" max="23:59" aria-label="Time" />
+                </label>
+                <label class="schedule-edit-field">
+                  <span class="sr-only">Show</span>
+                  <input type="text" name="show-${index}" value="${escapeValue(item.show)}" placeholder="Stream title" aria-label="Show name" />
+                </label>
+                <button class="schedule-remove" type="button" data-index="${index}" aria-label="Remove schedule row">×</button>
+              </li>`;
+          }).join('');
+        };
+ 
+        const openScheduleEditor = () => {
+          if (!isAdminMode) {
+            const enteredPassword = window.prompt('Enter the admin password to edit the livestream schedule');
+                if (enteredPassword !== adminPassword) {
+                  scheduleStatus.textContent = 'Incorrect password, please try again';
+              return;
+            }
+            isAdminMode = true;
+          }
+ 
+          isEditingSchedule = true;
+          scheduleEditor.hidden = false;
+          renderSchedule();
+          scheduleStatus.textContent = 'Editing unlocked. Change the schedule entries directly in the list, then save.';
+        };
+ 
+        const addScheduleRow = () => {
+          scheduleItems.push({ day: 'Monday', time: '00:00', show: '' });
+          renderSchedule();
+          scheduleStatus.textContent = 'Added a new schedule row. Fill in the details and save.';
+        };
+ 
+        const saveSchedule = () => {
+          const rows = [...scheduleList.querySelectorAll('li[data-index]')];
+          scheduleItems = rows.map((row) => ({
+            day: row.querySelector('select[name^="day-"]').value || 'TBD',
+            time: row.querySelector('input[name^="time-"]').value || '00:00',
+            show: row.querySelector('input[name^="show-"]').value.trim() || 'Fresh stream idea'
+          }));
+          localStorage.setItem(scheduleStorageKey, JSON.stringify(scheduleItems));
+          isEditingSchedule = false;
+          scheduleEditor.hidden = true;
+          renderSchedule();
+          scheduleStatus.textContent = 'Schedule updated successfully.';
+        };
+ 
+        scheduleList.addEventListener('click', (event) => {
+          if (!isEditingSchedule) return;
+          const removeButton = event.target.closest('.schedule-remove');
+          if (!removeButton) return;
+          const index = Number(removeButton.dataset.index);
+          if (Number.isNaN(index)) return;
+          scheduleItems.splice(index, 1);
+          renderSchedule();
+          scheduleStatus.textContent = 'Removed a schedule row. Save your changes to keep them.';
+        });
+
+        scheduleItems = loadSchedule();
+        renderSchedule();
+        scheduleAdminToggle.addEventListener('click', openScheduleEditor);
+        addScheduleButton.addEventListener('click', addScheduleRow);
+        saveScheduleButton.addEventListener('click', saveSchedule);
+        cancelScheduleButton.addEventListener('click', () => {
+          scheduleItems = loadSchedule();
+          isEditingSchedule = false;
+          scheduleEditor.hidden = true;
+          renderSchedule();
+          scheduleStatus.textContent = '';
+        });
+
+        const fanSearch = document.getElementById('fan-search');
+        const fanRows = [...document.querySelectorAll('#fan-table tbody tr')];
+        const fanEmpty = document.getElementById('fan-empty');
+        fanSearch.addEventListener('input', () => {
+          const term = fanSearch.value.trim().toLocaleLowerCase('vi');
+          let count = 0;
+          fanRows.forEach((row) => {
+            const match = row.textContent.toLocaleLowerCase('vi').includes(term);
+            row.hidden = !match;
+            if (match) count += 1;
+          });
+          fanEmpty.style.display = count ? 'none' : 'block';
+        });
+
+        const money = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 });
+        const donations = [
+          { name: '@Tiyuan', initials: 'Ti', total: 15500000, last: 'Diving with whales', avatar: 'avatar-pink', movement: 1 },
+          { name: '@skaignx', initials: 'sk', total: 503496, last: 'Sent a heart', avatar: 'avatar-pink', movement: 2 },
+          { name: '@Healed Wounds', initials: 'He', total: 398268, last: 'Corgi dog', avatar: 'avatar-blue', movement: 3 },
+          { name: '@LYCO Gaming', initials: 'LY', total: 381951, last: 'Galaxy', avatar: 'avatar-gold', movement: -1 },
+          { name: '@Hn', initials: 'Hn', total: 325674, last: 'GG Gift', avatar: 'avatar-blue', movement: -2 },
+          { name: '@Takara Yume', initials: 'Ta', total: 295038, last: 'Rose', avatar: 'avatar-lilac', movement: -3 }
+        ];
+        const leaderboard = document.getElementById('leaderboard-body');
+        const refreshEl = document.getElementById('last-refresh');
+        const updateAnnouncement = document.getElementById('leaderboard-update');
+        const refreshNow = document.getElementById('refresh-now');
+        const toggleLive = document.getElementById('toggle-live');
+        const supportMessages = ['Sent a heart', 'Corgi dog', 'Galaxy', 'GG Gift', 'Rose', 'Hime exclusive gift'];
+        let lastUpdated = new Date();
+        let liveUpdates = true;
+        let refreshTimer = 0;
+
+        function movementMarkup(change) {
+          if (change > 0) return `<span class="movement up" aria-label="Tăng ${change} hạng"><b aria-hidden="true">↑</b> +${change}</span>`;
+          if (change < 0) return `<span class="movement down" aria-label="Giảm ${Math.abs(change)} hạng"><b aria-hidden="true">↓</b> ${change}</span>`;
+          return '<span class="movement same" aria-label="Không đổi hạng"><b aria-hidden="true">—</b> 0</span>';
+        }
+        function renderLeaderboard(flashName = '') {
+          leaderboard.innerHTML = donations.map((fan, index) => {
+            const rank = index + 1;
+            return `<tr class="leader-row ${fan.name === flashName ? 'flash' : ''}">
+              <td class="rank-cell"><span class="rank-badge rank-${rank}">${rank}</span></td>
+              <td><span class="supporter"><span class="mini-avatar ${fan.avatar}" aria-hidden="true">${fan.initials}</span>${fan.name}</span></td>
+              <td class="amount">${money.format(fan.total)}</td>
+              <td><span class="support-note">${fan.last}</span></td>
+              <td>${movementMarkup(fan.movement)}</td>
+            </tr>`;
+          }).join('');
+          refreshEl.textContent = `Demo refreshed ${lastUpdated.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
+        }
+        function nudgeLeaderboard(announce = false) {
+          const positions = new Map(donations.map((fan, index) => [fan.name, index]));
+          const challengerIndex = 2 + Math.floor(Math.random() * 3);
+          const challenger = donations[challengerIndex];
+          const target = donations[challengerIndex - 1];
+          challenger.total = target.total + 30000 + Math.floor(Math.random() * 95000);
+          challenger.last = supportMessages[Math.floor(Math.random() * supportMessages.length)];
+          donations.sort((a, b) => b.total - a.total);
+          donations.forEach((fan, index) => { fan.movement = positions.get(fan.name) - index; });
+          lastUpdated = new Date();
+          renderLeaderboard(challenger.name);
+          if (announce) updateAnnouncement.textContent = `Demo leaderboard refreshed. ${challenger.name} just moved.`;
+        }
+        function setLiveUpdates(next) {
+          liveUpdates = next;
+          window.clearInterval(refreshTimer);
+          refreshTimer = 0;
+          toggleLive.textContent = liveUpdates ? 'Pause motion' : 'Resume motion';
+          toggleLive.setAttribute('aria-pressed', String(!liveUpdates));
+          if (liveUpdates) refreshTimer = window.setInterval(() => nudgeLeaderboard(false), 7000);
+        }
+        renderLeaderboard();
+        setLiveUpdates(true);
+        refreshNow.addEventListener('click', () => nudgeLeaderboard(true));
+        toggleLive.addEventListener('click', () => setLiveUpdates(!liveUpdates));
+
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          if (!form.reportValidity()) return;
+          const name = form.elements.name.value.trim();
+          const email = form.elements.email.value.trim();
+          const topic = form.elements.topic.value;
+          const message = form.elements.message.value.trim();
+          const subject = encodeURIComponent(`[Hime portfolio] ${topic} — ${name}`);
+          const body = encodeURIComponent(`Tên / biệt danh: ${name}\nEmail phản hồi: ${email}\nChủ đề: ${topic}\n\n${message}`);
+          status.textContent = 'Đang mở ứng dụng email của bạn ✦ Cảm ơn bạn!';
+          window.location.href = `mailto:collab@himevtuber.com?subject=${subject}&body=${body}`;
+          form.reset();
+        });
+      })();
+    </script>
+    <script src="../js/star.js"></script>
+    <script src="../js/introManager.js"></script>
+    <script src="../js/script.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #05040a;
+}
+
+.sky {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, #241b3d 0%, #140f2b 35%, #0a0716 65%, #050310 100%);
+}
+
+.stars-layer,
+.shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.loading-fill.finish{
+
+    animation:finishFlash .4s ease;
+
+}
+
+@keyframes finishFlash{
+
+0%{
+
+box-shadow:
+0 0 12px #52b8ff;
+
+}
+
+100%{
+
+box-shadow:
+0 0 45px #9ad7ff,
+0 0 90px #9ad7ff;
+
+}
+
+}
+
+

@@ -1,0 +1,22 @@
+# VS Code
+.vscode/
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# Cache
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db

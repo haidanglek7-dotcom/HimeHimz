@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Falling Stars</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/star.css">
+</head>
+<body>
+
+  <div class="sky">
+    <!-- twinkling background stars -->
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <!-- shooting / falling stars -->
+    <div class="shooting-stars" id="shootingStars"></div>
+  </div>
+
+  <script>
+    const starsLayer = document.getElementById('starsLayer');
+    const shootingLayer = document.getElementById('shootingStars');
+
+    // ---- Twinkling background stars ----
+    const STAR_COUNT = 150;
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const star = document.createElement('div');
+      star.className = 'bg-star';
+
+      const size = Math.random() * 2 + 1; // 1px - 3px
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+
+      starsLayer.appendChild(star);
+    }
+
+    // ---- Falling / shooting stars ----
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+
+      // random starting position along the top/right area
+      const startTop = Math.random() * 40 - 10; // -10% to 30%
+      const startLeft = Math.random() * 100;
+
+      // random size & speed for variety
+      const scale = Math.random() * 0.6 + 0.6; // 0.6 - 1.2
+      const duration = Math.random() * 1.2 + 1.2; // 1.2s - 2.4s
+
+      star.style.top = `${startTop}%`;
+      star.style.left = `${startLeft}%`;
+      star.style.setProperty('--scale', scale);
+      star.style.animationDuration = `${duration}s`;
+
+      shootingLayer.appendChild(star);
+
+      // clean up after animation ends
+      setTimeout(() => {
+        star.remove();
+      }, duration * 1000 + 100);
+    }
+
+    // spawn shooting stars at random intervals
+    function scheduleNextStar() {
+      const delay = Math.random() * 240 + 80; // 0.08s - 0.32s
+      setTimeout(() => {
+        createShootingStar();
+        scheduleNextStar();
+      }, delay);
+    }
+
+    scheduleNextStar();
+  </script>
+
+</body>
+</html>
