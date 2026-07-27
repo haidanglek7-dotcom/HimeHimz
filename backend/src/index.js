@@ -25,17 +25,43 @@ export default {
 
     const url = new URL(request.url);
 
-    if (url.pathname === "/api/schedule") {
+   if (url.pathname === "/api/schedule") {
 
-      const { results } = await env.hime_schedule
-        .prepare("SELECT * FROM schedule")
-        .all();
+    if (request.method === "GET") {
 
-      return Response.json(results, {
-        headers: corsHeaders,
-      });
+        const { results } = await env.hime_schedule
+            .prepare("SELECT * FROM schedule")
+            .all();
+
+        return Response.json(results,{
+            headers:corsHeaders
+        });
     }
 
+    if (request.method === "POST") {
+
+        const data = await request.json();
+
+        await env.hime_schedule
+            .prepare(`
+                UPDATE schedule
+                SET time = ?, title = ?
+                WHERE day = ?
+            `)
+            .bind(
+                data.time,
+                data.title,
+                data.day
+            )
+            .run();
+
+        return Response.json({
+            success:true
+        },{
+            headers:corsHeaders
+        });
+    }
+}
     return new Response("Not Found", {
       status: 404,
       headers: corsHeaders,
