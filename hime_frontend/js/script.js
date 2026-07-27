@@ -48,3 +48,26 @@ function deleteEffect(){
 }
 
 typeEffect();
+
+async function loadSchedule() {
+    const response = await fetch("https://backend.himehimzvtuber.workers.dev/api/schedule")
+    const schedules = await response.json();
+
+    const scheduleList = document.getElementById("schedule-list");
+
+    scheduleList.innerHTML = "";
+
+    schedules.forEach(item => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <strong class="schedule-day">${item.day}</strong>
+            <span class="schedule-time">${item.time}</span>
+            <span class="schedule-show">${item.title}</span>
+        `;
+
+        scheduleList.appendChild(li);
+    });
+}
+
+loadSchedule();
