@@ -43,17 +43,16 @@ export default {
         const data = await request.json();
 
         await env.hime_schedule
-            .prepare(`
-                UPDATE schedule
-                SET time = ?, title = ?
-                WHERE day = ?
-            `)
-            .bind(
-                data.time,
-                data.title,
-                data.day
-            )
-            .run();
+        .prepare(`
+        INSERT INTO schedule(day,time,title)
+        VALUES(?,?,?)
+        `)
+        .bind(
+            data.day,
+            data.time,
+            data.title
+        )
+        .run();
 
         return Response.json({
             success:true
@@ -61,6 +60,58 @@ export default {
             headers:corsHeaders
         });
     }
+
+    if(request.method==="PUT"){
+    
+        const id = url.pathname.split("/").pop();
+
+            const data = await request.json();
+
+            await env.hime_schedule
+            .prepare(`
+            UPDATE schedule
+            SET
+            day=?,
+            time=?,
+            title=?
+            WHERE id=?
+            `)
+            .bind(
+            data.day,
+            data.time,
+            data.title,
+            id
+            )
+            .run();
+
+            const { results } = await env.hime_schedule
+            .prepare("SELECT * FROM schedule ORDER BY id")
+            .all();
+
+            return Response.json(results,{
+            headers:corsHeaders
+            });
+    }
+    
+    if(request.method==="DELETE"){
+        const id = url.pathname.split("/").pop();
+
+            await env.hime_schedule
+            .prepare(
+            "DELETE FROM schedule WHERE id=?"
+            )
+            .bind(id)
+            .run();
+
+            const { results } =
+            await env.hime_schedule
+            .prepare("SELECT * FROM schedule ORDER BY id")
+            .all();
+
+            return Response.json(results,{
+            headers:corsHeaders
+            });
+    }    
 }
     return new Response("Not Found", {
       status: 404,

@@ -52,6 +52,7 @@ typeEffect();
 async function loadSchedule() {
     const response = await fetch("https://backend.himehimzvtuber.workers.dev/api/schedule")
     const schedules = await response.json();
+    
 
     const scheduleList = document.getElementById("schedule-list");
 
