@@ -1418,6 +1418,7 @@
         const cancelScheduleButton = document.getElementById('cancel-schedule-edit');
         const scheduleStatus = document.getElementById('schedule-status');
         const scheduleStorageKey = 'hime-stream-schedule-v1';
+        const scheduleApiUrl = 'https://backend.himehimzvtuber.workers.dev/api/schedule';
         const adminPassword = 'himeadmin';
         const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         let scheduleItems = [];
@@ -1425,26 +1426,54 @@
         let isEditingSchedule = false;
  
         const defaultSchedule = [
-          { day: 'Monday', time: '08:00', show: 'Valorant — Aim & Chill' },
-          { day: 'Tuesday', time: '08:00', show: 'Liên Quân — Party cùng chat' },
-          { day: 'Wednesday', time: '08:00', show: 'Valorant — Aim & Chill' },
-          { day: 'Thursday', time: '08:00', show: 'Valorant — Aim & Chill' },
-          { day: 'Friday', time: '08:00', show: 'Valorant — Aim & Chill' },
-          { day: 'Saturday', time: '08:00', show: 'Steam Variety Night' },
-          { day: 'Sunday', time: '08:00', show: 'Just Chatting & requests' }
+          { day: 'Monday', time: '08:00', title: 'Valorant — Aim & Chill' },
+          { day: 'Tuesday', time: '08:00', title: 'Liên Quân — Party cùng chat' },
+          { day: 'Wednesday', time: '08:00', title: 'Valorant — Aim & Chill' },
+          { day: 'Thursday', time: '08:00', title: 'Valorant — Aim & Chill' },
+          { day: 'Friday', time: '08:00', title: 'Valorant — Aim & Chill' },
+          { day: 'Saturday', time: '08:00', title: 'Steam Variety Night' },
+          { day: 'Sunday', time: '08:00', title: 'Just Chatting & requests' }
         ];
  
         const escapeValue = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+        const normalizeScheduleItems = (items) => {
+          if (!Array.isArray(items)) return [];
+          return items.map((item) => ({
+            day: item.day || 'TBD',
+            time: item.time || '00:00',
+            title: item.title || item.show || 'Fresh stream idea'
+          }));
+        };
  
-        const loadSchedule = () => {
+        const loadScheduleFromStorage = () => {
           const saved = localStorage.getItem(scheduleStorageKey);
           if (!saved) return defaultSchedule;
           try {
             const parsed = JSON.parse(saved);
-            return Array.isArray(parsed) && parsed.length ? parsed : defaultSchedule;
+            return normalizeScheduleItems(Array.isArray(parsed) && parsed.length ? parsed : defaultSchedule);
           } catch (error) {
             return defaultSchedule;
           }
+        };
+ 
+        const loadSchedule = async () => {
+          try {
+            const response = await fetch(scheduleApiUrl, { headers: { Accept: 'application/json' } });
+            if (!response.ok) throw new Error('Unable to load schedule from database');
+
+            const payload = normalizeScheduleItems(await response.json());
+            if (payload.length) {
+              scheduleItems = payload;
+              localStorage.setItem(scheduleStorageKey, JSON.stringify(scheduleItems));
+              renderSchedule();
+              return;
+            }
+          } catch (error) {
+            console.warn('Schedule API unavailable, falling back to local storage.', error);
+          }
+
+          scheduleItems = loadScheduleFromStorage();
+          renderSchedule();
         };
  
         const dayOptions = (selectedDay) => weekDays.map((day) => `<option value="${day}"${day === selectedDay ? ' selected' : ''}>${day}</option>`).join('');
@@ -1457,7 +1486,7 @@
                 <li>
                   <strong class="schedule-day">${escapeValue(item.day)}</strong>
                   <span class="schedule-time">${escapeValue(item.time)}</span>
-                  <span class="schedule-show">${escapeValue(item.show)}</span>
+                  <span class="schedule-show">${escapeValue(item.title)}</span>
                 </li>`;
             }
  
@@ -1475,7 +1504,7 @@
                 </label>
                 <label class="schedule-edit-field">
                   <span class="sr-only">Show</span>
-                  <input type="text" name="show-${index}" value="${escapeValue(item.show)}" placeholder="Stream title" aria-label="Show name" />
+                  <input type="text" name="show-${index}" value="${escapeValue(item.title)}" placeholder="Stream title" aria-label="Show name" />
                 </label>
                 <button class="schedule-remove" type="button" data-index="${index}" aria-label="Remove schedule row">×</button>
               </li>`;
@@ -1499,19 +1528,37 @@
         };
  
         const addScheduleRow = () => {
-          scheduleItems.push({ day: 'Monday', time: '00:00', show: '' });
+          scheduleItems.push({ day: 'Monday', time: '00:00', title: '' });
           renderSchedule();
           scheduleStatus.textContent = 'Added a new schedule row. Fill in the details and save.';
         };
  
-        const saveSchedule = () => {
+        const saveSchedule = async () => {
           const rows = [...scheduleList.querySelectorAll('li[data-index]')];
-          scheduleItems = rows.map((row) => ({
+          const payload = rows.map((row) => ({
             day: row.querySelector('select[name^="day-"]').value || 'TBD',
             time: row.querySelector('input[name^="time-"]').value || '00:00',
-            show: row.querySelector('input[name^="show-"]').value.trim() || 'Fresh stream idea'
+            title: row.querySelector('input[name^="show-"]').value.trim() || 'Fresh stream idea'
           }));
+
+          scheduleItems = payload;
           localStorage.setItem(scheduleStorageKey, JSON.stringify(scheduleItems));
+
+          try {
+            const response = await fetch(scheduleApiUrl, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error('Unable to save schedule to database');
+            const savedItems = normalizeScheduleItems(await response.json());
+            scheduleItems = savedItems.length ? savedItems : payload;
+            localStorage.setItem(scheduleStorageKey, JSON.stringify(scheduleItems));
+          } catch (error) {
+            console.warn('Schedule save to database failed, but the browser cache was updated.', error);
+          }
+
           isEditingSchedule = false;
           scheduleEditor.hidden = true;
           renderSchedule();
@@ -1529,13 +1576,14 @@
           scheduleStatus.textContent = 'Removed a schedule row. Save your changes to keep them.';
         });
 
-        scheduleItems = loadSchedule();
+        scheduleItems = loadScheduleFromStorage();
         renderSchedule();
+        loadSchedule();
         scheduleAdminToggle.addEventListener('click', openScheduleEditor);
         addScheduleButton.addEventListener('click', addScheduleRow);
         saveScheduleButton.addEventListener('click', saveSchedule);
         cancelScheduleButton.addEventListener('click', () => {
-          scheduleItems = loadSchedule();
+          scheduleItems = loadScheduleFromStorage();
           isEditingSchedule = false;
           scheduleEditor.hidden = true;
           renderSchedule();

@@ -22,4 +22,19 @@ describe("Hello World worker", () => {
 		const response = await SELF.fetch("http://example.com");
 		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
 	});
+
+	it("supports preflight requests for schedule updates", async () => {
+		const request = new Request("http://example.com/api/schedule", {
+			method: "OPTIONS",
+			headers: {
+				Origin: "https://hime.himehimzvtuber.workers.dev",
+			},
+		});
+
+		const response = await worker.fetch(request, env);
+
+		expect(response.status).toBe(200);
+		expect(response.headers.get("Access-Control-Allow-Methods")).toContain("PUT");
+		expect(response.headers.get("Access-Control-Allow-Methods")).toContain("DELETE");
+	});
 });
